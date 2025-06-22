@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medicalstaffs",
+  "info": {
+    "singularName": "medicalstaff",
+    "pluralName": "medicalstaffs",
+    "displayName": "medicalstaff"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "picture": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

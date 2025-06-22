@@ -544,6 +544,35 @@ export interface ApiContactinformationContactinformation
   };
 }
 
+export interface ApiGalleryGallery extends Struct.CollectionTypeSchema {
+  collectionName: 'galleries';
+  info: {
+    displayName: 'gallery';
+    pluralName: 'galleries';
+    singularName: 'gallery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    caption: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::gallery.gallery'
+    > &
+      Schema.Attribute.Private;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -570,6 +599,71 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMedicalserviceMedicalservice
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'medicalservices';
+  info: {
+    displayName: 'medicalservice';
+    pluralName: 'medicalservices';
+    singularName: 'medicalservice';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    backgroundPicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description1: Schema.Attribute.Text;
+    description2: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::medicalservice.medicalservice'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMedicalstaffMedicalstaff
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'medicalstaffs';
+  info: {
+    displayName: 'medicalstaff';
+    pluralName: 'medicalstaffs';
+    singularName: 'medicalstaff';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::medicalstaff.medicalstaff'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1090,7 +1184,10 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::contactinformation.contactinformation': ApiContactinformationContactinformation;
+      'api::gallery.gallery': ApiGalleryGallery;
       'api::global.global': ApiGlobalGlobal;
+      'api::medicalservice.medicalservice': ApiMedicalserviceMedicalservice;
+      'api::medicalstaff.medicalstaff': ApiMedicalstaffMedicalstaff;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
