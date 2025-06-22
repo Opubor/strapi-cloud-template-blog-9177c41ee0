@@ -18,7 +18,7 @@
       "type": "text"
     },
     "description2": {
-      "type": "string"
+      "type": "text"
     },
     "backgroundPicture": {
       "type": "media",
